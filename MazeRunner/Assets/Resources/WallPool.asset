@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefabs:
   - {fileID: 4957951408254363059, guid: cefbb72b4a0ded348964737884b9f956, type: 3}
-  - {fileID: 4957951408254363059, guid: d049187fa810cc04e8d3675de9e35c68, type: 3}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Manager.Entity.NodeObject;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Manager
         [SerializeField] private NodeRenderer rendererPrefab;
 
         private List<NodeRenderer> Renderers;
-        public void GenerateMap(Vector2Int size, Vector2Int startNode, Vector2Int endNode)
+        public IEnumerator GenerateMap(Vector2Int size, Vector2Int startNode, Vector2Int endNode)
         {
             foreach (NodeRenderer t in Renderers)
             {
@@ -92,12 +93,14 @@ namespace Assets.Scripts.Manager
 
                     nowNode = nowNode.LastParent;
                 } while (!nowNode.Generated && counterB++ < MaximumTurn);
+                
             }
-
-            foreach (Node t in nodes)
-            {
-                Renderers.Add(Instantiate(rendererPrefab, transform).Initialize(Manager, t));
-            }
+            if(rendererPrefab!=null)
+                foreach (Node t in nodes)
+                {
+                    Renderers.Add(Instantiate(rendererPrefab, transform).Initialize(Manager, t));
+                }
+            yield return new WaitForEndOfFrame();
         }
 
         public void OnDrawGizmos()
@@ -124,7 +127,7 @@ namespace Assets.Scripts.Manager
                 {
                     foreach (Vector2Int t in empties)
                     {
-                        Gizmos.DrawWireCube(new Vector2(t.x, t.y), Vector3.one * .75f);
+                        Gizmos.DrawWireCube(new Vector3(t.x,0, t.y), Vector3.one * .75f);
                     }
                 }
             }

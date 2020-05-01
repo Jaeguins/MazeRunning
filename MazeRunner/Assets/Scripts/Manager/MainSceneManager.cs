@@ -34,7 +34,7 @@ namespace Assets.Scripts.Manager
 
         public void OnClick()
         {
-            MazeManager.GenerateMap(size,start,end);
+            StartCoroutine(MazeManager.GenerateMap(size,start,end));
         }
     }
 }
