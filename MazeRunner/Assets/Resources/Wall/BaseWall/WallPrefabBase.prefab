@@ -137,8 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfac575763586424eb5b2de43795bf50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 0.45
+  dist: 0.5
   animator: {fileID: 3025894642022104954}
+  light: []
 --- !u!95 &3025894642022104954
 Animator:
   serializedVersion: 3
