@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 namespace Assets.Scripts.Manager.Entity
 {
@@ -44,5 +43,6 @@ namespace Assets.Scripts.Manager.Entity
             toMove *= speed;
             Body.MovePosition(transform.position+toMove);
         }
+
     }
 }

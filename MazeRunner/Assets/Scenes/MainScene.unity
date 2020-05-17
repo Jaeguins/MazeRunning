@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.65574706, g: 0.6796179, b: 0.68103343, a: 1}
+  m_IndirectSpecularColor: {r: 0.6557474, g: 0.67961836, b: 0.6810342, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -337,6 +337,8 @@ MonoBehaviour:
   backward: 115
   left: 97
   right: 100
+  examOne: {fileID: 11400000, guid: 3e993f9468d6a964c8ca9c041e33c26a, type: 2}
+  examTwo: {fileID: 11400000, guid: bbdaa9e356a079b438e28d6d9a85293f, type: 2}
 --- !u!54 &684591545
 Rigidbody:
   m_ObjectHideFlags: 0
