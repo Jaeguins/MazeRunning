@@ -9,6 +9,9 @@ namespace Assets.Scripts.Manager
     {
         public List<WallRenderer> wallPrefabs;
         private MainSceneManager Manager;
+        public GameObject EndPrefab;
+        public GameObject StartPrefab;
+
         public WallRenderer GetWallPrefab(int type = -1) => type == -1 ? wallPrefabs[(int) (Random.value * wallPrefabs.Count)] : wallPrefabs[type];
 
         public void Initialize(MainSceneManager manager)

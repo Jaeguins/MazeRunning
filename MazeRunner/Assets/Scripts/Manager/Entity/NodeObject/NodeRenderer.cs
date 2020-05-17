@@ -4,13 +4,19 @@ using UnityEngine;
 
 namespace Assets.Scripts.Manager.Entity.NodeObject
 {
+    public enum NodeType
+    {
+        Normal,
+        Start,
+        End
+    }
     public class NodeRenderer:MonoBehaviour
     {
         [NonSerialized]public Node Manager;
         public MainSceneManager SceneManager;
         public WallRenderer[] Walls;
         
-        public NodeRenderer Initialize(MainSceneManager scene,Node parent)
+        public NodeRenderer Initialize(MainSceneManager scene,Node parent,NodeType nodeType=NodeType.Normal)
         {
             SceneManager = scene;
             Manager = parent;
@@ -31,6 +37,15 @@ namespace Assets.Scripts.Manager.Entity.NodeObject
                 }
             }
 
+            switch (nodeType)
+            {
+                case NodeType.Start:
+                    Instantiate(SceneManager.WallPoolManager.StartPrefab, transform);
+                    break;
+                case NodeType.End:
+                    Instantiate(SceneManager.WallPoolManager.EndPrefab, transform);
+                    break;
+            }
             return this;
         }
 

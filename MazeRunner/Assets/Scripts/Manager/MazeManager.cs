@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Manager.Entity.NodeObject;
@@ -14,22 +15,28 @@ namespace Assets.Scripts.Manager
         public static int MaximumTurn = 10000000;
         public Vector2Int LastStart => start;
         public Vector2Int LastEnd => end;
-        private Node[,] nodes;
+        [NonSerialized]public Node[,] nodes;
         private Vector2Int start, end, size;
         private HashSet<Vector2Int> empties;
         private MainSceneManager Manager;
+        public bool Generated = false;
         [SerializeField] private bool showGizmos = false;
         [SerializeField] private NodeRenderer rendererPrefab;
+        [SerializeField] private int InstantiateSpeed;
 
         private List<NodeRenderer> Renderers;
+
         public IEnumerator GenerateMap(Vector2Int size, Vector2Int startNode, Vector2Int endNode)
         {
             foreach (NodeRenderer t in Renderers)
             {
                 Destroy(t.gameObject);
             }
+
             Renderers.Clear();
             this.size = size;
+            start = startNode;
+            end = endNode;
             nodes = new Node[size.x, size.y];
             for (int i = 0; i < size.x; i++)
             for (int j = 0; j < size.y; j++)
@@ -93,14 +100,30 @@ namespace Assets.Scripts.Manager
 
                     nowNode = nowNode.LastParent;
                 } while (!nowNode.Generated && counterB++ < MaximumTurn);
-                
             }
-            if(rendererPrefab!=null)
-                foreach (Node t in nodes)
+
+            int timer = InstantiateSpeed;
+            if (rendererPrefab != null)
+                for (int i = 0; i < size.x; i++)
                 {
-                    Renderers.Add(Instantiate(rendererPrefab, transform).Initialize(Manager, t));
+                    for (int j = 0; j < size.y; j++)
+                    {
+                        Vector2Int coord = new Vector2Int(i, j);
+                        NodeType type = NodeType.Normal;
+                        if (coord == start) type = NodeType.Start;
+                        if (coord == end) type = NodeType.End;
+                        Node t = nodes[i, j];
+                        timer--;
+                        Renderers.Add(Instantiate(rendererPrefab, transform).Initialize(Manager, t, type));
+                        if (timer < 0)
+                        {
+                            timer = InstantiateSpeed;
+                            yield return null;
+                        }
+                    }
                 }
-            yield return new WaitForEndOfFrame();
+
+            Generated = true;
         }
 
         public void OnDrawGizmos()
@@ -111,13 +134,12 @@ namespace Assets.Scripts.Manager
                 if (nodes != null)
                     foreach (Node t in nodes)
                     {
-                        
                         for (int i = 0; i < 4; i++)
                         {
                             if (t.Wall[i])
                             {
                                 Gizmos.DrawCube(t.NodePos + new Vector3(Node.Xoffset[i], 1, Node.Yoffset[i]) * .45f,
-                                        new Vector3(Node.XwallSize[i], 2, Node.YwallSize[i]));
+                                    new Vector3(Node.XwallSize[i], 2, Node.YwallSize[i]));
                             }
                         }
                     }
@@ -127,7 +149,7 @@ namespace Assets.Scripts.Manager
                 {
                     foreach (Vector2Int t in empties)
                     {
-                        Gizmos.DrawWireCube(new Vector3(t.x,0, t.y), Vector3.one * .75f);
+                        Gizmos.DrawWireCube(new Vector3(t.x, 0, t.y), Vector3.one * .75f);
                     }
                 }
             }
@@ -136,7 +158,7 @@ namespace Assets.Scripts.Manager
         public void Initialize(MainSceneManager mainSceneManager)
         {
             Manager = mainSceneManager;
-            Renderers=new List<NodeRenderer>();
+            Renderers = new List<NodeRenderer>();
         }
     }
 }

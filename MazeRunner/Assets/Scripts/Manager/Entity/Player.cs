@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Manager.Entity
 {
@@ -11,11 +12,8 @@ namespace Assets.Scripts.Manager.Entity
         [SerializeField] private float XSensitivity = 1f, YSensitivity = 1f, speed = .01f;
         [SerializeField] private string MouseX = "Mouse X", MouseY = "Mouse Y";
         [SerializeField] private KeyCode forward, backward, left, right;
-
-        public void Start()
-        {
-        }
-
+        private MainSceneManager manager;
+        public bool CanMove = false;
         public void Update()
         {
             ProcessInput();
@@ -32,6 +30,7 @@ namespace Assets.Scripts.Manager.Entity
             movingForward.Normalize();
             movingRight.Normalize();
             Vector3 toMove = Vector3.zero;
+            if (!CanMove) return;
             if (Input.GetKey(forward)) toMove += movingForward;
 
             if (Input.GetKey(backward)) toMove -= movingForward;
@@ -44,5 +43,19 @@ namespace Assets.Scripts.Manager.Entity
             Body.MovePosition(transform.position+toMove);
         }
 
+        public void Initialize(MainSceneManager manager)
+        {
+            this.manager = manager;
+            StartCoroutine(InitializeCoroutine());
+        }
+
+        private IEnumerator InitializeCoroutine()
+        {
+            yield return new WaitUntil(() => manager.MazeManager.Generated);
+            transform.position = manager.MazeManager.nodes[manager.start.x, manager.start.y].NodePos + Vector3.up * .1f;
+            Body.useGravity = true;
+            CanMove = true;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

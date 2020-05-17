@@ -1,5 +1,13 @@
 sceneSetups:
-- path: Assets/Scenes/MainScene.unity
+- path: Assets/Scenes/StartScene.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/MainScene.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Pup Up Productions/Voxel Castle Pack Lite/Scenes/AssetScene.unity
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
