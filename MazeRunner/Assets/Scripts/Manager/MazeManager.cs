@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Manager.Entity.NodeObject;
+using Scripts.Manager.Entity.NodeObject;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Manager
+namespace Scripts.Manager
 {
     //URDL 순서
 

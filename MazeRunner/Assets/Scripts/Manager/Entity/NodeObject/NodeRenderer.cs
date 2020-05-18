@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Manager.Entity.NodeObject
+namespace Scripts.Manager.Entity.NodeObject
 {
     public enum NodeType
     {
@@ -34,6 +35,15 @@ namespace Assets.Scripts.Manager.Entity.NodeObject
                 if (Manager.Wall[i])
                 {
                     Walls[i] = Instantiate(scene.GetWallPrefab(), transform).Initialize(this,i);
+                }
+                else
+                {
+                    if (Random.value < .03f)
+                    {
+                        Quiz.Quiz quiz = Instantiate(scene.WallPoolManager.quizPrefabs[0], transform);
+                        Walls[i] = quiz.GetComponent<WallRenderer>().Initialize(this,i);
+                        quiz.Initialize(scene);
+                    }
                 }
             }
 

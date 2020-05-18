@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.Manager.Entity;
-using Assets.Scripts.Manager.Entity.NodeObject;
+﻿using System.Collections;
+using Scripts.Manager.Entity;
+using Scripts.Manager.Entity.NodeObject;
 using UnityEngine;
 
-namespace Assets.Scripts.Manager
+namespace Scripts.Manager
 {
     public class MainSceneManager : MonoBehaviour
     {
@@ -31,15 +32,17 @@ namespace Assets.Scripts.Manager
                 end = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
             } while (Vector2Int.Distance(start,end)<size.magnitude/2);
 
-            StartCoroutine(MazeManager.GenerateMap(size,start,end));
+            StartCoroutine(InitializeRoutine());
+            
             Player.Initialize(this);
             Initialized = true;
         }
 
-        // Update is called once per frame
-        void Update()
+        private IEnumerator InitializeRoutine()
         {
-        
+            yield return MazeManager.GenerateMap(size,start,end);
+            yield return Player.InitializeCoroutine();
+            Fader.TargetStatus = false;
         }
     }
 }

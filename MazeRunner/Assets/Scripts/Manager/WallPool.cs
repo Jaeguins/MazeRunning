@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Manager.Entity.NodeObject;
+using Scripts.Manager.Entity.NodeObject;
+using Scripts.Manager.Quiz;
 using UnityEngine;
 
-namespace Assets.Scripts.Manager
+namespace Scripts.Manager
 {
     [CreateAssetMenu(fileName = "WallPool",menuName = "custom/WallPool")]
     public class WallPool:ScriptableObject
     {
         public List<WallRenderer> wallPrefabs;
+        public List<Quiz.Quiz> quizPrefabs;
+        public List<QuizData> quizData;
         private MainSceneManager Manager;
         public GameObject EndPrefab;
         public GameObject StartPrefab;

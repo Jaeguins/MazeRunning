@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Manager.Entity.NodeObject
+namespace Scripts.Manager.Entity.NodeObject
 {
     public class Node
     {

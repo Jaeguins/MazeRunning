@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Manager.Entity
+namespace Scripts.Manager.Entity
 {
     public class Player : MonoBehaviour
     {
@@ -22,6 +22,7 @@ namespace Assets.Scripts.Manager.Entity
 
         private void ProcessInput()
         {
+            if (!CanMove) return;
             XRot += (Input.GetAxis(MouseY)) * YSensitivity;
             YRot += (Input.GetAxis(MouseX)) * XSensitivity;
             Vector3 movingForward = Head.forward, movingRight = Head.right;
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Manager.Entity
             movingForward.Normalize();
             movingRight.Normalize();
             Vector3 toMove = Vector3.zero;
-            if (!CanMove) return;
+            
             if (Input.GetKey(forward)) toMove += movingForward;
 
             if (Input.GetKey(backward)) toMove -= movingForward;
@@ -46,16 +47,16 @@ namespace Assets.Scripts.Manager.Entity
         public void Initialize(MainSceneManager manager)
         {
             this.manager = manager;
-            StartCoroutine(InitializeCoroutine());
         }
 
-        private IEnumerator InitializeCoroutine()
+        public IEnumerator InitializeCoroutine()
         {
             yield return new WaitUntil(() => manager.MazeManager.Generated);
             transform.position = manager.MazeManager.nodes[manager.start.x, manager.start.y].NodePos + Vector3.up * .1f;
             Body.useGravity = true;
             CanMove = true;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }
