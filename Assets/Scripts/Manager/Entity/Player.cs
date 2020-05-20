@@ -29,7 +29,7 @@ namespace Scripts.Manager.Entity {
         /// <summary>
         /// 실시간 갱신
         /// </summary>
-        public void Update() {
+        public void FixedUpdate() {
             ProcessInput(); //입력처리
             Head.localRotation = Quaternion.Euler(XRot, YRot, 0); //계산각도에 따라 머리 회전
         }

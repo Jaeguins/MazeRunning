@@ -115,7 +115,8 @@ namespace Scripts.Manager.Quiz {
                 yield return new WaitForEndOfFrame();
             }
             wallModel.SetActive(false);
-            effect.Play();
+            if(manager.Particle)
+                effect.Play();
         }
 
 #endregion

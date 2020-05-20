@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookOpen
       objectReference: {fileID: 0}
+    - target: {fileID: 2740254250785852403, guid: c784420d0f9b745eead5958796f62185,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4398868073269141736, guid: c784420d0f9b745eead5958796f62185,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -262,6 +267,11 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 3.708777
       objectReference: {fileID: 0}
+    - target: {fileID: 6916823750160980770, guid: 08161c7bc36b846119884238e8c68920,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262586723173237290, guid: 08161c7bc36b846119884238e8c68920,
         type: 3}
       propertyPath: m_Name
@@ -280,6 +290,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6100935691236634159}
     m_Modifications:
+    - target: {fileID: 5658048197041605681, guid: 4898c3b22274b47c981d87aded2cb422,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6163687739577313066, guid: 4898c3b22274b47c981d87aded2cb422,
         type: 3}
       propertyPath: m_LocalPosition.x

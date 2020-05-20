@@ -19,6 +19,7 @@ namespace Scripts.Manager {
                                               end;
         [Header("플레이어")] public Player Player;
         [Header("초기화 완료여부")] public bool Initialized = false;
+        [Header("입자효과 여부")] public bool Particle = true;
 
         /// <summary>
         /// 시작

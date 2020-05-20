@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44824833, g: 0.49827492, b: 0.57558423, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465822, g: 0.4964165, b: 0.5748201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -331,11 +331,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MazeManager: {fileID: 1455507131}
   WallPoolManager: {fileID: 11400000, guid: 4efc7fc6399efce4cb27be05459437b7, type: 2}
-  size: {x: 40, y: 40}
+  size: {x: 20, y: 20}
   start: {x: 0, y: 0}
   end: {x: 20, y: 20}
   Player: {fileID: 684591544}
   Initialized: 0
+  Particle: 0
 --- !u!4 &265675814
 Transform:
   m_ObjectHideFlags: 0
@@ -505,7 +506,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -858,7 +859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Generated: 0
-  showGizmos: 0
   rendererPrefab: {fileID: 1084646984751575269, guid: d4d6e266b1cbc8847bdbdbaebf2c135d,
     type: 3}
   InstantiateSpeed: 20

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4957951408254363057, guid: cefbb72b4a0ded348964737884b9f956,
         type: 3}
       propertyPath: m_Name
-      value: WallPrefabBase Variant 4
+      value: WallWithCarpet
       objectReference: {fileID: 0}
     - target: {fileID: 4957951408254363058, guid: cefbb72b4a0ded348964737884b9f956,
         type: 3}
@@ -82,6 +82,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6100935691236634159}
     m_Modifications:
+    - target: {fileID: 5051942126605827358, guid: e8f67a7ec8be24efd9547c809c619783,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6706043554586695173, guid: e8f67a7ec8be24efd9547c809c619783,
         type: 3}
       propertyPath: m_LocalPosition.x

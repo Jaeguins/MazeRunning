@@ -25,6 +25,17 @@ namespace Scripts.Manager.Entity {
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        [Header("입자효과")] public ParticleSystem particle;
+        [Header("하이라이트")] public GameObject highLight;
+
+        public void Initialize(MainSceneManager manager) {
+            if (manager.Particle) {
+                particle.Play();
+            } else {
+                particle.gameObject.SetActive(false);
+                highLight.SetActive(true);
+            }
+        }
     }
 
 }

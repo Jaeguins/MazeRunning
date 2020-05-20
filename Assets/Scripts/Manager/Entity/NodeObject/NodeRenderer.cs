@@ -61,7 +61,8 @@ namespace Scripts.Manager.Entity.NodeObject {
                     Instantiate(SceneManager.WallPoolManager.StartPrefab, transform);//시작점 장식물 추가
                     break;
                 case NodeType.End:
-                    Instantiate(SceneManager.WallPoolManager.EndPrefab, transform);//도착점 장식물 추가
+                    GameObject tmp=Instantiate(SceneManager.WallPoolManager.EndPrefab, transform);//도착점 장식물 추가
+                    tmp.GetComponent<ToNextGame>().Initialize(SceneManager);
                     break;
             }
 #endregion
